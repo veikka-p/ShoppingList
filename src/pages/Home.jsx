@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import 'tailwindcss/tailwind.css';
+
 
 function Home() {
   const [task, setTask] = useState('');
@@ -22,7 +24,7 @@ function Home() {
 
   return (
     <div>
-      <h1>To-Do List</h1>
+      <h1 className='px-4'>To-Do List</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" value={task} onChange={handleChange} />
         <button type="submit">Add Task</button>
