@@ -14,4 +14,4 @@ CREATE TABLE users (
 );
 
 
-INSERT INTO todos(id, user_email, title, progress, date) VALUES ('0', 'Veikka.puolitaival@gmail.com', 'Firs Todo', 10, 'Thu DEC 29 2023 13:25:25 GMT+0000 (GUlF STANDARD TIME)');
+INSERT INTO todos(id, user_email, title, progress, date) VALUES ('0', 'Veikka.puolitaival@gmail.com', 'First Todo', 10, 'Thu DEC 29 2023 13:25:25 GMT+0000 (GUlF STANDARD TIME)');

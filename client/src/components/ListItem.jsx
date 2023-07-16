@@ -1,12 +1,22 @@
-import React from 'react';
+import React from "react";
+import ProgressBar from "./ProgressBar";
+import Tickicon from "./Tickicon";
 
-function ListItem() {
+const ListItem = ({ task }) => {
   return (
-    <div>
-      <h1>Hello, World!</h1>
-      <p>This is a simple JSX file.</p>
-    </div>
+    <li className="list-item">
+      <div className="info-container">
+        <Tickicon />
+        <p>{task.title}</p>
+        <ProgressBar />
+      </div>
+
+      <div className="button-container">
+        <button className="edit">EDIT</button>
+        <button className="delete">DELETE</button>
+      </div>
+    </li>
   );
-}
+};
 
 export default ListItem;
