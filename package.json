@@ -1,15 +1,16 @@
 {
   "dependencies": {
+    "concurrently": "^8.2.0",
     "if-env": "^1.0.4"
   },
   "name": "shoppinglist",
   "version": "1.0.0",
-  "devDependencies": {},
   "scripts": {
-    "build" : "if-env TYPE=server && (cd server && npm install) || (cd client && npm install)",
-    "start" : "node ./server/server.js",
-    "client" : "cd client && npm run start"
-    },
+    "build": "if-env TYPE=server && (cd server && npm install) || (cd client && npm install)",
+    "start": "node ./server/server.js",
+    "client": "cd client && npm run start",
+    "dev": "concurrently \"npm start\" \"npm run client\""
+  },
   "author": "Veikkap",
   "license": "ISC"
 }

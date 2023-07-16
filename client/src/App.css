@@ -9,6 +9,7 @@ body {
   
   .app {
     background-attachment: fixed;
+    background-color: white;
     box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1px;
     border-radius: 10px;
     padding: 10px;
@@ -33,6 +34,6 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    border-bottom: rgba(0, 0, 0, 0.5) solid 1px;
+    border-bottom: rgba(255, 255, 255, 0.5) 1px solid;
   }
   
