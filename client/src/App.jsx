@@ -3,10 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ListHeader from "./components/ListHeader";
 import ListItem from "./components/ListItem";
 import "./App.css";
+import Auth from "./components/Auth";
 
 const App = () => {
   const userEmail = "Veikka.puolitaival@gmail.com";
   const [tasks, setTasks] = useState([]);
+
+  const authToken = true;
 
   const getData = async () => {
     try {
@@ -19,7 +22,9 @@ const App = () => {
   };
 
   useEffect(() => {
-    getData();
+    if (authToken) {
+      getData();
+    }
   }, []);
 
   // Sort by date
@@ -29,7 +34,8 @@ const App = () => {
 
   return (
     <div className="app">
-      <ListHeader listName="Shopping list" getData={getData} />
+      {!authToken && <Auth />}
+      {authToken && <ListHeader listName="Shopping list" getData={getData} />}
       {sortedTasks.map((task) => (
         <ListItem key={task.id} task={task} getData={getData} />
       ))}

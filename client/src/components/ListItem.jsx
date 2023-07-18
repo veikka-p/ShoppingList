@@ -17,6 +17,7 @@ const ListItem = ({ task, getData }) => {
 
       if (response.status === 200) {
         console.log("Todo deleted successfully");
+        getData();
       } else {
         console.log("An error occurred while deleting the todo");
       }
@@ -32,7 +33,6 @@ const ListItem = ({ task, getData }) => {
         <p>{task.title}</p>
         <ProgressBar />
       </div>
-
       <div className="button-container">
         <button className="edit" onClick={() => setShowModal(true)}>
           EDIT
