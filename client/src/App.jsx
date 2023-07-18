@@ -6,7 +6,7 @@ import "./App.css";
 
 const App = () => {
   const userEmail = "Veikka.puolitaival@gmail.com";
-  const [tasks, setTasks] = useState(null);
+  const [tasks, setTasks] = useState([]);
 
   const getData = async () => {
     try {
@@ -18,20 +18,20 @@ const App = () => {
     }
   };
 
-  useEffect(() => getData, []);
+  useEffect(() => {
+    getData();
+  }, []);
 
-  console.log(tasks);
-
-  //Sort by date
-  const sortedTasks = tasks?.sort(
+  // Sort by date
+  const sortedTasks = [...tasks].sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
 
   return (
     <div className="app">
-      <ListHeader listName="Shopping list" />
-      {sortedTasks?.map((task) => (
-        <ListItem key={task.id} task={task} />
+      <ListHeader listName="Shopping list" getData={getData} />
+      {sortedTasks.map((task) => (
+        <ListItem key={task.id} task={task} getData={getData} />
       ))}
     </div>
   );
