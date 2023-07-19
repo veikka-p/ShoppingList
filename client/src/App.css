@@ -176,3 +176,31 @@ input {
 .modal label {
   font-size: 13px;
 }
+
+/* Auth  */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}
+
+.auth-container-box {
+  width: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.auth-container-box form {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  padding: 20px;
+}
+
+.auth-options button {
+  width: 50%;
+  border: none;
+  padding: 10px;
+  color: rgb(35, 38, 47);
+}

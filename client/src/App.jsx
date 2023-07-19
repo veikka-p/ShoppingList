@@ -9,7 +9,7 @@ const App = () => {
   const userEmail = "Veikka.puolitaival@gmail.com";
   const [tasks, setTasks] = useState([]);
 
-  const authToken = true;
+  const authToken = false;
 
   const getData = async () => {
     try {
@@ -35,10 +35,14 @@ const App = () => {
   return (
     <div className="app">
       {!authToken && <Auth />}
-      {authToken && <ListHeader listName="Shopping list" getData={getData} />}
-      {sortedTasks.map((task) => (
-        <ListItem key={task.id} task={task} getData={getData} />
-      ))}
+      {authToken && (
+        <>
+          <ListHeader listName="Shopping list" getData={getData} />
+          {sortedTasks.map((task) => (
+            <ListItem key={task.id} task={task} getData={getData} />
+          ))}
+        </>
+      )}
     </div>
   );
 };
