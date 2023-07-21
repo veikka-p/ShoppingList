@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useCookies } from "react-cookie";
 
 function Auth() {
+  const [cookies, setCookie] = useCookies(["Email", "AuthToken"]);
   const [isLogIn, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,21 +15,26 @@ function Auth() {
   };
 
   const handleSubmit = async (e, endpoint) => {
-    e.preventDefault(); // Corrected from email.preventDefault()
-    if (isLogIn && password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-    setError(null); // Clear the error state when form is submitted
-    try {
-      const response = await fetch(`http://localhost:8000/${endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      // Handle the response here if needed
-    } catch (error) {
-      setError("An error occurred. Please try again."); // Set error message on fetch failure
+    e.preventDefault();
+    setError(null);
+
+    if (isLogIn) {
+      try {
+      } catch (error) {
+        setError("Invalid email or password");
+        console.log(error);
+      }
+    } else {
+      if (password !== confirmPassword) {
+        setError("Passwords do not match");
+        return;
+      }
+
+      try {
+      } catch (error) {
+        setError("An error occurred during signup");
+        console.log(error);
+      }
     }
   };
 

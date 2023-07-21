@@ -4,20 +4,21 @@ import ListHeader from "./components/ListHeader";
 import ListItem from "./components/ListItem";
 import "./App.css";
 import Auth from "./components/Auth";
+import { useCookies } from "react-cookie";
 
 const App = () => {
-  const userEmail = "Veikka.puolitaival@gmail.com";
+  const [cookies, setCookie, removeCookie] = useCookies(["Email", "AuthToken"]);
+  const userEmail = cookies.Email;
+  const authToken = cookies.AuthToken;
   const [tasks, setTasks] = useState([]);
-
-  const authToken = false;
 
   const getData = async () => {
     try {
       const response = await fetch(`http://localhost:8000/todos/${userEmail}`);
-      const json = await response.json();
-      setTasks(json);
+      const data = await response.json();
+      setTasks(data);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -25,7 +26,7 @@ const App = () => {
     if (authToken) {
       getData();
     }
-  }, []);
+  }, [authToken]);
 
   // Sort by date
   const sortedTasks = [...tasks].sort(
