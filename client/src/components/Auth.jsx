@@ -18,23 +18,29 @@ function Auth() {
     e.preventDefault();
     setError(null);
 
-    if (isLogIn) {
-      try {
-      } catch (error) {
-        setError("Invalid email or password");
-        console.log(error);
-      }
-    } else {
-      if (password !== confirmPassword) {
-        setError("Passwords do not match");
-        return;
-      }
+    if (!isLogIn && password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
 
-      try {
-      } catch (error) {
-        setError("An error occurred during signup");
-        console.log(error);
+    try {
+      const response = await fetch(`http://localhost:8000/${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+
+      if (data.detail) {
+        setError(data.detail);
+      } else {
+        setCookie("Email", data.email);
+        setCookie("AuthToken", data.token);
+        window.location.reload();
       }
+    } catch (error) {
+      setError("An error occurred during login/signup");
+      console.error(error);
     }
   };
 

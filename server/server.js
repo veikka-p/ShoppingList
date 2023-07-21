@@ -82,6 +82,25 @@ app.post('/signup', async (req, res) => {
 
 
 // Login
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (user.rows.length === 0) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+    const isPasswordValid = bcrypt.compareSync(password, user.rows[0].hashed_password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+    const token = jwt.sign({ email }, 'secret', { expiresIn: '1h' });
+    res.json({ email, token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});
 
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
