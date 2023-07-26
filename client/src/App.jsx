@@ -14,7 +14,9 @@ const App = () => {
 
   const getData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/todos/${userEmail}`);
+      const response = await fetch(
+        `${import.meta.env.VITE_EXPRESS_APP_URL}/todos/${userEmail}`
+      );
       const data = await response.json();
       setTasks(data);
     } catch (error) {
@@ -38,7 +40,7 @@ const App = () => {
       {!authToken && <Auth />}
       {authToken && (
         <>
-          <ListHeader listName="Shopping list" getData={getData} />
+          <ListHeader listName="ToDoList" getData={getData} />
           {sortedTasks.map((task) => (
             <ListItem key={task.id} task={task} getData={getData} />
           ))}
