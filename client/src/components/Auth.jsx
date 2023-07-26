@@ -24,20 +24,25 @@ function Auth() {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/${endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
+      const response = await fetch(
+        `${import.meta.env.VITE_EXPRESS_APP_URL}/${endpoint}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
-      if (data.detail) {
-        setError(data.detail);
-      } else {
-        setCookie("Email", data.email);
-        setCookie("AuthToken", data.token);
-        window.location.reload();
+      if (!response.ok) {
+        // Handle authentication error (e.g., incorrect password)
+        setError("Invalid email or password");
+        return;
       }
+
+      const data = await response.json();
+      setCookie("Email", data.email);
+      setCookie("AuthToken", data.token);
+      window.location.reload();
     } catch (error) {
       setError("An error occurred during login/signup");
       console.error(error);
