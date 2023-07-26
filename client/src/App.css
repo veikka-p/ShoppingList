@@ -208,3 +208,26 @@ input {
   padding: 10px;
   color: rgb(35, 38, 47);
 }
+
+.copyright {
+  font-size: 14px;
+  margin: 10px;
+}
+
+.user-email {
+  float: right;
+  font-size: 14px;
+  margin: 10px;
+}
+
+.outer-bar {
+  width: 200px;
+  height: 15px;
+  background-color: rgb(220, 220, 220);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.inner-bar {
+  height: 15px;
+}

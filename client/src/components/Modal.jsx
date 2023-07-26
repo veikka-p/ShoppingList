@@ -85,7 +85,7 @@ function Modal({ mode, setShowModal, getData, task }) {
             value={data.title}
             onChange={handleChange}
           />
-          <label htmlFor="range">Drag to select your current progress</label>
+          {/* <label htmlFor="range">Drag to select your current progress</label>
           <input
             required
             type="range"
@@ -93,7 +93,7 @@ function Modal({ mode, setShowModal, getData, task }) {
             name="progress"
             value={data.progress}
             onChange={handleChange}
-          />
+          /> */}
           <input
             className={editMode ? "edit" : ""}
             type="submit"
