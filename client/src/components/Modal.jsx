@@ -14,11 +14,14 @@ function Modal({ mode, setShowModal, getData, task }) {
   const postData = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/todos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_EXPRESS_APP_URL}/todos`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (response.status === 200) {
         console.log("Todo created successfully");
@@ -35,11 +38,14 @@ function Modal({ mode, setShowModal, getData, task }) {
   const editData = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8000/todos/${task.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_EXPRESS_APP_URL}/todos/${task.id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (response.status === 200) {
         console.log("Todo updated successfully");
