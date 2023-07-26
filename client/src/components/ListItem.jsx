@@ -8,12 +8,15 @@ const ListItem = ({ task, getData }) => {
 
   const deleteToDo = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/todos/${task.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_EXPRESS_APP_URL}/todos/${task.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.status === 200) {
         console.log("Todo deleted successfully");
