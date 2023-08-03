@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ListHeader from "./components/ListHeader";
 import ListItem from "./components/ListItem";
 import "./App.css";
