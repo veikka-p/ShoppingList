@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useCookies } from "react-cookie";
 
 function Auth() {
-  const [cookies, setCookie] = useCookies(["Email", "AuthToken"]);
+  const [setCookie] = useCookies(["Email", "AuthToken"]);
   const [isLogIn, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
